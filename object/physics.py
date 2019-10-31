@@ -4,6 +4,36 @@ class Physics:
     def __init__(self):
         pass
 
-    def getNewPosition(self, current_pos, velocity) -> Tuple[int, int]:
-        pass
+    def calculateNewPosition(self, pos, v, dt) -> Tuple[float, float]:
+        # pos   : previous position
+        # v     : velocity
+        # dt    : delta time
 
+        return current_pos[0], current_pos[1] - velocity/deltatime
+
+    def calculateGravitationalForce(self, g, m) -> float:
+        # g     : gravitational acceleration
+        # m     : mass
+
+        return g * m
+
+    def calculateNewDragForce(self, rho, C, A, v) -> float:
+        # rho   : density of air
+        # C     : coefficient of drag
+        # A     : area of object's face
+        # v     : velocity
+
+        return rho * C * A * (v ** 2)
+
+    def calculateNewAcceleration(self, G, F, m) -> float:
+        # G     : gravitational force
+        # F     : drag force
+        # m     : mass
+
+        return (G - F) / m
+
+    def calculateNewVelocity(self, v, a) -> float:
+        # v     : previous velocity
+        # a     : acceleration
+
+        return v + a
