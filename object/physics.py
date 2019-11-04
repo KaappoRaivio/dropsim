@@ -27,6 +27,9 @@ class Physics:
         self.mass = m
         self.m = m
 
+        self.gravitatational_force
+        self.g = g
+
         self.density = rho
         self.rho = rho
 
@@ -36,8 +39,6 @@ class Physics:
         self.area = A
         self.A = A
 
-        self.g = g
-
     def getNewPosition(self) -> Tuple[int, int]:
         x = self.pos[0]
         y = self.pos[1]
@@ -45,7 +46,7 @@ class Physics:
         v = self.getNewVelocity()
         dt = self.dt
 
-        return (x, y - v / dt)
+        return (x, y - v/dt)
 
     def getNewVelocity(self) -> float:
         v = self.v
