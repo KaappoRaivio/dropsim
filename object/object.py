@@ -15,3 +15,5 @@ class Object:
         
     def getSpriteData(self):
         return self.sprite.data
+        
+
