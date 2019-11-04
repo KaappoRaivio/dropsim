@@ -11,7 +11,7 @@ class Scene:
 
     def update(self):
         for o in self._objects:
-            o.getNewPos()
+            o.updateAndMove()
 
 
 
