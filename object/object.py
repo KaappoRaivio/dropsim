@@ -11,4 +11,7 @@ class Object:
 
     @property
     def pos(self) -> Tuple[int, int]:
-	return self._x, self._y
+        return self._x, self._y
+        
+    def getSpriteData(self):
+        return self.sprite.data
