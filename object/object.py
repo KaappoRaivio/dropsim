@@ -5,7 +5,7 @@ class Object:
     def __init__(self, path_to_sprite):
         pass
 
-    def getNewPos(self) -> Tuple[int, int]:
+    def updateAndMove(self) -> None:
         pass
 
     @property
