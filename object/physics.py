@@ -9,7 +9,7 @@ class Physics:
         # v     : velocity
         # dt    : delta time
 
-        return current_pos[0], current_pos[1] - velocity/deltatime
+        return pos[0], pos[1] - v/dt
 
     def calculateGravitationalForce(self, g, m) -> float:
         # g     : gravitational acceleration
