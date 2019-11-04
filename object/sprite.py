@@ -27,10 +27,10 @@ class Sprite:
         # print("\n".join(map("".join, matrix)))
 
     def getArea(self) -> float:
-        pass
+        return 1
 
     def getCoefficientOfDrag(self) -> float:
-        pass
+        return 1
 
     @property
     def data(self):

@@ -1,7 +1,7 @@
 from typing import Tuple
 from object import physics
 
-from object.sprite import Sprite
+from object import sprite
 
 
 class Object:
@@ -9,8 +9,8 @@ class Object:
         self._x = -1
         self._y = -1
 
-        self.sprite = Sprite.fromFile(path_to_sprite)
-        self.physics = physics.Physics()
+        self.sprite: sprite.Sprite = sprite.Sprite.fromFile(path_to_sprite)
+        self.physics = physics.Physics(A=self.sprite.getArea())
 
     def updateAndMove(self, deltaTime: float) -> None:
         self._x, self._y = self.physics.getNewPosition()

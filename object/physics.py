@@ -36,15 +36,17 @@ class Physics:
         self.area = A
         self.A = A
 
+        self.g = g
+
     def getNewPosition(self) -> Tuple[int, int]:
         x = self.pos[0]
         y = self.pos[1]
         
-        v = self.calculateVelocity()
+        v = self.getNewVelocity()
         dt = self.dt
 
-        return (x, y - v/dt)
-    
+        return (x, y - v / dt)
+
     def getNewVelocity(self) -> float:
         v = self.v
         a = self.getNewAcceleration()
@@ -71,5 +73,5 @@ class Physics:
         A = self.A
         v = self.v
 
-        return rho * C * A * (v ** 2)
+        return 0.5 * rho * C * A * (v ** 2)
 
