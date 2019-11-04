@@ -1,7 +1,7 @@
 from typing import Tuple
 
 class Physics:
-    def __init__(self, pos, v, a, dt, m, g, rho, C, A):
+    def __init__(self, pos=(-1, -1), v=0, a=0, dt=0.01, m=1, g=10, rho=1.23, C=1, A=1):
         # pos   : position of the object
         # v     : velocity of the object
         # a     : acceleration of the object
