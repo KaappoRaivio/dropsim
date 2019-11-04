@@ -32,5 +32,9 @@ class Sprite:
     def getCoefficientOfDrag(self) -> float:
         pass
 
+    @property
+    def data(self):
+        return self._matrix
+
 if __name__ == '__main__':
     print(Sprite.fromFile("../assets/Untitled.png"))

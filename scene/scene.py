@@ -10,8 +10,12 @@ class Scene:
         self._objects.append(object)
 
     def update(self):
-        for o in self._objects:
-            o.updateAndMove()
+        for index, o in enumerate(self._objects):
+            o.updateAndMove(self._getDeltaTime(index))
+
+    def _getDeltaTime(self, index: int):
+        return 0.01
+
 
 
 
