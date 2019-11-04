@@ -1,39 +1,75 @@
 from typing import Tuple
 
 class Physics:
-    def __init__(self):
-        pass
-
-    def calculateNewPosition(self, pos, v, dt) -> Tuple[float, float]:
-        # pos   : previous position
-        # v     : velocity
-        # dt    : delta time
-
-        return pos[0], pos[1] - v/dt
-
-    def calculateGravitationalForce(self, g, m) -> float:
+    def __init__(self, pos, v, a, dt, m, g, rho, C, A):
+        # pos   : position of the object
+        # v     : velocity of the object
+        # a     : acceleration of the object
+        # dt    : delta time i. e. amount of time passed
+        # m     : mass of the object
         # g     : gravitational acceleration
-        # m     : mass
-
-        return g * m
-
-    def calculateNewDragForce(self, rho, C, A, v) -> float:
         # rho   : density of air
-        # C     : coefficient of drag
-        # A     : area of object's face
-        # v     : velocity
+        # C     : drag coefficient of the object
+        # A     : face area of the object
 
-        return rho * C * A * (v ** 2)
+        self.position = pos
+        self.pos = pos
 
-    def calculateNewAcceleration(self, G, F, m) -> float:
-        # G     : gravitational force
-        # F     : drag force
-        # m     : mass
+        self.velocity = v
+        self.v = v
+        
+        self.acceleration = a
+        self.a = a
+
+        self.deltatime = dt
+        self.dt = dt
+
+        self.mass = m
+        self.m = m
+
+        self.density = rho
+        self.rho = rho
+
+        self.drag_coeff = C
+        self.C = C
+
+        self.area = A
+        self.A = A
+
+    def getNewPosition(self) -> Tuple[int, int]:
+        x = self.pos[0]
+        y = self.pos[1]
+        
+        v = self.calculateVelocity()
+        dt = self.dt
+
+        return (x, y - v/dt)
+    
+    def getNewVelocity(self) -> float:
+        v = self.v
+        a = self.getNewAcceleration()
+        dt = self.dt
+
+        return v + a/dt
+
+    def getNewAcceleration(self) -> float:
+        G = self.getGravitationalForce()
+        F = self.getNewDrag()
+        m = self.m
 
         return (G - F) / m
 
-    def calculateNewVelocity(self, v, a) -> float:
-        # v     : previous velocity
-        # a     : acceleration
+    def getGravitationalForce(self) -> float:
+        g = self.g
+        m = self.m
 
-        return v + a
+        return g * m
+
+    def getNewDrag(self) -> float:
+        rho = self.rho
+        C = self.C
+        A = self.A
+        v = self.v
+
+        return rho * C * A * (v ** 2)
+
