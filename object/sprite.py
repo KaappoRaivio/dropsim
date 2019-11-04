@@ -20,9 +20,9 @@ class Sprite:
             matrix.append([])
             for x, pixel in enumerate(row):
                 if sum(pixel) / len(pixel) > threshold:
-                    matrix[y].append("11")
+                    matrix[y].append("1")
                 else:
-                    matrix[y].append("00")
+                    matrix[y].append("0")
 
         # print("\n".join(map("".join, matrix)))
 
