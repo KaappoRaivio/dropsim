@@ -4,6 +4,7 @@ import os
 
 class Sprite:
     PIXEL_WEIGHT = 0.001
+    PIXEL_WIDTH = 0.001
     def __init__(self, matrix, mass):
         self._matrix = matrix
         self._mass = mass
@@ -35,7 +36,7 @@ class Sprite:
 
     @property
     def area(self) -> float:
-        return len(self._matrix[0])
+        return len(self._matrix[0]) * self.PIXEL_WIDTH
 
     @property
     def mass(self):
