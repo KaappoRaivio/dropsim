@@ -21,5 +21,8 @@ class Object:
         
     def getSpriteData(self):
         return self.sprite.data
+
+    def __str__(self):
+        return f"a: {self.physics.a}, v: {self.physics.v}, pos: {self.pos}"
         
 
