@@ -12,31 +12,22 @@ class Physics:
         # C     : drag coefficient of the object
         # A     : face area of the object
 
-        self.position = pos
         self.pos = pos
 
-        self.velocity = v
         self.v = v
         
-        self.acceleration = a
         self.a = a
 
-        self.deltatime = dt
         self.dt = dt
 
-        self.mass = m
         self.m = m
 
-        self.gravitatational_force
         self.g = g
 
-        self.density = rho
         self.rho = rho
 
-        self.drag_coeff = C
         self.C = C
 
-        self.area = A
         self.A = A
 
     def getNewPosition(self) -> Tuple[int, int]:
