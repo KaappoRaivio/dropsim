@@ -3,10 +3,10 @@ from typing import List
 
 from object import object
 
-sys.stdout = os.devnull
+# sys.stdout = os.devnull
 import pygame
 pygame.init()
-sys.stdout = sys.__stdout__
+# sys.stdout = sys.__stdout__
 
 
 class Graphics:
@@ -15,6 +15,8 @@ class Graphics:
         self.display = pygame.display.set_mode(size)
 
     def render(self, objects: List[object.Object]):
+        self.display.fill((255, 255, 255, 255))
+
         for o in objects:
             self.fillObject(o)
 

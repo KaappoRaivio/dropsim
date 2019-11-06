@@ -24,9 +24,10 @@ class Sprite:
             for x, pixel in enumerate(row):
                 if sum(pixel) / len(pixel) > threshold:
                     mass += cls.PIXEL_WEIGHT
-                    matrix[y].append("1")
+
+                    matrix[y].append((0, 0, 0, 255))
                 else:
-                    matrix[y].append("0")
+                    matrix[y].append((255, 255, 255, 255))
 
         return cls(matrix, mass)
 

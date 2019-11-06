@@ -37,7 +37,9 @@ class Physics:
         v = self.getNewVelocity()
         dt = self.dt
 
-        return (x, y - v/dt)
+        self.pos = (x, y - v/dt)
+
+        return self.pos
 
     def getNewVelocity(self) -> float:
         v = self.v
