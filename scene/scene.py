@@ -35,3 +35,4 @@ class Scene:
             self.update()
             screen.render(self._objects)
             time.sleep(0.1)
+            print(self._objects[0])
