@@ -13,7 +13,7 @@ class Object:
         self.physics = physics.Physics(A=self.sprite.area, m=self.sprite.mass, C=self.sprite.coefficientOfDrag)
 
     def updateAndMove(self, deltaTime: float) -> None:
-        self._x, self._y = self.physics.updatePosition()
+        self._x, self._y = self.physics.updatePosition(deltaTime)
 
     @property
     def pos(self) -> Tuple[int, int]:
