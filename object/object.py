@@ -10,7 +10,7 @@ class Object:
         self._y = -1
 
         self.sprite: sprite.Sprite = sprite.Sprite.fromFile(path_to_sprite)
-        self.physics = physics.Physics(A=self.sprite.getArea())
+        self.physics = physics.Physics(A=self.sprite.area, m=self.sprite.mass, C=self.sprite.coefficientOfDrag)
 
     def updateAndMove(self, deltaTime: float) -> None:
         self._x, self._y = self.physics.getNewPosition()
