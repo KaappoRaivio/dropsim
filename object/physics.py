@@ -1,12 +1,12 @@
 from typing import Tuple
 
 class Physics:
-    def __init__(self, pos=(-1, -1), v=0, a=0, dt=0.01, m=1, g=10, rho=1.23, C=1, A=1):
+    def __init__(self, pos=(0, 100), v=0, a=0, dt=0.01, m=1, g=10, rho=1.23, C=1, A=1):
         # pos   : position of the object
         # v     : velocity of the object
         # a     : acceleration of the object
         # dt    : delta time i. e. amount of time passed
-        # m     : mass of the object
+        # m     : mass of the objegetNewct
         # g     : gravitational acceleration
         # rho   : density of air
         # C     : drag coefficient of the object
@@ -37,7 +37,7 @@ class Physics:
         v = self.updateVelocity()
         dt = self.dt
 
-        self.pos = (x, y - v/dt)
+        self.pos = (x, y - v*dt)
 
         return self.pos
 
@@ -46,7 +46,7 @@ class Physics:
         a = self.updateAcceleration()
         dt = self.dt
 
-        self.v = v + a/dt
+        self.v = v + a*dt
 
         return self.v
 
