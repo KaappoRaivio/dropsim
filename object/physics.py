@@ -32,7 +32,7 @@ class Physics:
         x = self.pos[0]
         y = self.pos[1]
         
-        v = self.updateVelocity(dt)
+        v = self._updateVelocity(dt)
 
         self.pos = (x, y - v*dt)
 
@@ -40,15 +40,15 @@ class Physics:
 
     def _updateVelocity(self, dt) -> float:
         v = self.v
-        a = self.updateAcceleration()
+        a = self._updateAcceleration()
 
         self.v = v + a*dt
 
         return self.v
 
     def _updateAcceleration(self) -> float:
-        G = self.getGravitationalForce()
-        F = self.getDrag()
+        G = self._getGravitationalForce()
+        F = self._getDrag()
         m = self.m
 
         self.a = (G - F) / m
