@@ -9,7 +9,9 @@ from object import object
 screen = graphics.Graphics()
 scene = scene.Scene()
 
-o = object.Object("assets/Untitled.png")  # TODO
+# o = object.Object("assets/muffincup.png", reverse=True)  # TODO
+# o = object.Object("assets/Untitled.png", reverse=False)  # TODO
+o = object.Object("assets/ball.png", reverse=True)  # TODO
 # while True:
 #     print(o.sprite.mass, o.sprite.area, o.pos)
 #     o.updateAndMove(0.01)

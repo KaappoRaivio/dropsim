@@ -5,12 +5,12 @@ from object import sprite
 
 
 class Object:
-    def __init__(self, path_to_sprite):
+    def __init__(self, path_to_sprite, reverse=False):
         self._x = -1
         self._y = -1
 
-        self.sprite: sprite.Sprite = sprite.Sprite.fromFile(path_to_sprite)
-        self.physics = physics.Physics(A=self.sprite.area, m=self.sprite.mass, C=self.sprite.coefficientOfDrag)
+        self.sprite: sprite.Sprite = sprite.Sprite.fromFile(path_to_sprite, reverse=reverse)
+        self.physics = physics.Physics(A=self.sprite.area, m=self.sprite.mass, C=self.sprite.coefficientOfDrag, bounciness=self.sprite.bounciness)
 
     def updateAndMove(self, deltaTime: float) -> None:
         self._x, self._y = self.physics.updatePosition(deltaTime)
@@ -23,6 +23,6 @@ class Object:
         return self.sprite.data
 
     def __str__(self):
-        return f"a: {self.physics.a}, v: {self.physics.v}, pos: {self.pos}"
+        return f"a: {self.physics.a:6.2f}, v: {self.physics.v:6.2f}, pos: ({self.pos[0]:.2f}, {self.pos[1]:6.2f}), drag: {self.physics.getDrag():6.2f}, weight {self.physics.getGravitationalForce():6.2f}"
         
 

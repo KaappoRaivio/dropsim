@@ -22,13 +22,12 @@ class Scene:
     def update(self):
         for index, o in enumerate(self._objects):
             time = self._getDeltaTime(index)
-            print(o.pos)
             o.updateAndMove(time)
 
     def _getDeltaTime(self, index: int):
         previous = self.previous_times[index]
         self.previous_times[index] = time.time()
-        return self.previous_times[index] - previous
+        return (self.previous_times[index] - previous) * 3
 
     def runForEver(self, screen: graphics.Graphics):
         while KeyboardInterrupt:

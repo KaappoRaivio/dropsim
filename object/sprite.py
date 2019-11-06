@@ -3,34 +3,37 @@ import os
 
 
 class Sprite:
-    PIXEL_WEIGHT = 0.001
-    PIXEL_WIDTH = 0.001
-    def __init__(self, matrix, mass):
+    PIXEL_WEIGHT = 0.01
+    PIXEL_WIDTH = 0.01
+    def __init__(self, matrix, mass, path):
         self._matrix = matrix
         self._mass = mass
+
+        self.path = path
 
     def normalizeData(self):
         return
 
     @classmethod
-    def fromFile(cls, path, threshold=0.5):
+    def fromFile(cls, path, threshold: float=0.5, reverse: bool=False):
         data = plt.imread(path)
         # print(data)
 
         matrix = []
         mass = 0
 
-        for y, row in enumerate(data):
+        for y, row in enumerate(reversed(data)):
             matrix.append([])
             for x, pixel in enumerate(row):
+                print(sum(pixel) / len(pixel), threshold)
                 if sum(pixel) / len(pixel) > threshold:
-                    mass += cls.PIXEL_WEIGHT
-
-                    matrix[y].append((0, 0, 0, 255))
+                    mass += cls.PIXEL_WEIGHT * sum(pixel) / len(pixel)
+                    matrix[y].append((0, 0, 0, 255) if not reverse else (255, 255, 255, 255))
                 else:
-                    matrix[y].append((255, 255, 255, 255))
-
-        return cls(matrix, mass)
+                    # print("Moi")
+                    matrix[y].append((255, 255, 255, 255) if not reverse else (0, 0, 0, 255))
+        print(mass)
+        return cls(matrix, mass, path)
 
         # print("\n".join(map("".join, matrix)))
 
@@ -50,5 +53,14 @@ class Sprite:
     def data(self):
         return self._matrix
 
+    @property
+    def bounciness(self):
+        return 0.8
+
+    @property
+    def size(self):
+        return len(self._matrix[0]), len(self._matrix)
+
+
 if __name__ == '__main__':
-    print(Sprite.fromFile("../assets/Untitled.png"))
+    print(Sprite.fromFile("../assets/muffincup.png"))

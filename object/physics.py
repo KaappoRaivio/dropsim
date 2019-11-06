@@ -1,7 +1,7 @@
 from typing import Tuple
 
 class Physics:
-    def __init__(self, pos=(0, 100), v=0, a=0, m=1, g=10, rho=1.23, C=1, A=1):
+    def __init__(self, pos=(0, 100), v=0, a=0, m=1, g=10, rho=1.23, C=1, A=1, bounciness=0.5):
         # pos   : position of the object
         # v     : velocity of the object
         # a     : acceleration of the object
@@ -12,6 +12,7 @@ class Physics:
         # C     : drag coefficient of the object
         # A     : face area of the object
 
+        self.bounciness = bounciness
         self.pos = pos
 
         self.v = v
@@ -31,6 +32,12 @@ class Physics:
     def updatePosition(self, dt) -> Tuple[int, int]:
         x = self.pos[0]
         y = self.pos[1]
+
+        if int(y) <= 0:
+            self.v = -self.v * self.bounciness
+            y = 0
+            self.pos = self.pos[0], 0,
+
         
         v = self._updateVelocity(dt)
 
@@ -47,21 +54,21 @@ class Physics:
         return self.v
 
     def _updateAcceleration(self) -> float:
-        G = self._getGravitationalForce()
-        F = self._getDrag()
+        G = self.getGravitationalForce()
+        F = self.getDrag()
         m = self.m
 
         self.a = (G - F) / m
 
         return self.a
 
-    def _getGravitationalForce(self) -> float:
+    def getGravitationalForce(self) -> float:
         g = self.g
         m = self.m
 
         return g * m
 
-    def _getDrag(self) -> float:
+    def getDrag(self) -> float:
         rho = self.rho
         C = self.C
         A = self.A
