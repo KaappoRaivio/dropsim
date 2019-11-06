@@ -30,30 +30,34 @@ class Physics:
 
         self.A = A
 
-    def getNewPosition(self) -> Tuple[int, int]:
+    def updatePosition(self) -> Tuple[int, int]:
         x = self.pos[0]
         y = self.pos[1]
         
-        v = self.getNewVelocity()
+        v = self.updateVelocity()
         dt = self.dt
 
         self.pos = (x, y - v/dt)
 
         return self.pos
 
-    def getNewVelocity(self) -> float:
+    def updateVelocity(self) -> float:
         v = self.v
-        a = self.getNewAcceleration()
+        a = self.updateAcceleration()
         dt = self.dt
 
-        return v + a/dt
+        self.v = v + a/dt
 
-    def getNewAcceleration(self) -> float:
+        return self.v
+
+    def updateAcceleration(self) -> float:
         G = self.getGravitationalForce()
-        F = self.getNewDrag()
+        F = self.getDrag()
         m = self.m
 
-        return (G - F) / m
+        self.a = (G - F) / m
+
+        return self.a
 
     def getGravitationalForce(self) -> float:
         g = self.g
@@ -61,7 +65,7 @@ class Physics:
 
         return g * m
 
-    def getNewDrag(self) -> float:
+    def getDrag(self) -> float:
         rho = self.rho
         C = self.C
         A = self.A
