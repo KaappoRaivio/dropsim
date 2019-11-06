@@ -27,7 +27,7 @@ class Graphics:
 
         for y in range(len(data)):
             for x in range(len(data[y])):
-                self.display.set_at((x, y), data[y][x])
+                self.display.set_at((_object.pos[0] + x, _object.pos[1] + y), data[y][x])
 
     def _update(self):
         pygame.display.flip()
