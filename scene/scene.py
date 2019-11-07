@@ -41,3 +41,6 @@ class Scene:
             print(self._objects[0])
             # if self._objects[0].pos[1] <= 0:
             #     sys.exit(0)
+
+    def getHighestPoint(self):
+        return max(map(lambda x: x.highest_point, self._objects))
