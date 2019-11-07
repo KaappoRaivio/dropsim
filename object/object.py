@@ -5,19 +5,16 @@ from object import sprite
 
 
 class Object:
-    def __init__(self, path_to_sprite, reverse=False):
-        self._x = -1
-        self._y = -1
-
+    def __init__(self, path_to_sprite, reverse=False, pos=(0, 5)):
         self.sprite: sprite.Sprite = sprite.Sprite.fromFile(path_to_sprite, reverse=reverse)
-        self.physics = physics.Physics(A=self.sprite.area, m=self.sprite.mass, C=self.sprite.coefficientOfDrag, bounciness=self.sprite.bounciness)
+        self.physics = physics.Physics(A=self.sprite.area, m=self.sprite.mass, C=self.sprite.coefficientOfDrag, bounciness=self.sprite.bounciness, pos=pos)
 
     def updateAndMove(self, deltaTime: float) -> None:
-        self._x, self._y = self.physics.updatePosition(deltaTime)
+        self.physics.updatePosition(deltaTime)
 
     @property
     def pos(self) -> Tuple[int, int]:
-        return self._x, self._y
+        return self.physics.pos
         
     def getSpriteData(self):
         return self.sprite.data

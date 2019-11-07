@@ -33,7 +33,7 @@ class Physics:
         x = self.pos[0]
         y = self.pos[1]
 
-        if int(y) <= 0:
+        if y <= 0:
             self.v = -self.v * self.bounciness
             y = 0
             self.pos = self.pos[0], 0,

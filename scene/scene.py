@@ -1,6 +1,8 @@
 import time
 from typing import List
 
+import sys
+
 from object import object
 from scene import graphics
 
@@ -27,11 +29,15 @@ class Scene:
     def _getDeltaTime(self, index: int):
         previous = self.previous_times[index]
         self.previous_times[index] = time.time()
-        return (self.previous_times[index] - previous) * 3
+        return self.previous_times[index] - previous
 
     def runForEver(self, screen: graphics.Graphics):
+        self.previous_times = list(map(lambda x: time.time(), self.previous_times))
+
         while KeyboardInterrupt:
             self.update()
             screen.render(self._objects)
-            time.sleep(0.1)
+            time.sleep(0.01)
             print(self._objects[0])
+            # if self._objects[0].pos[1] <= 0:
+            #     sys.exit(0)

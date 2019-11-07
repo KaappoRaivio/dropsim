@@ -29,9 +29,14 @@ class Graphics:
         #     for x in range(len(data[y])):
         #         self.display.set_at((int(_object.pos[0] + x), self.size[1] - int(_object.pos[1] + y)), data[y][x])
         image = pygame.image.load(_object.sprite.path)
-        a = (int(_object.pos[0]), self.size[1] - int(_object.pos[1]) - _object.sprite.size[1])
-        print(a)
-        self.display.blit(image, a)
+
+        pixel_dimen = sprite.Sprite.PIXEL_DIMEN
+
+        position_in_metres = _object.pos
+        position_in_pixels = (position_in_metres[0] / pixel_dimen, self.size[1] - position_in_metres[1] / pixel_dimen - _object.sprite.size[1])
+        print(position_in_pixels)
+
+        self.display.blit(image, position_in_pixels)
 
     def _update(self):
         pygame.display.flip()

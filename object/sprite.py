@@ -4,7 +4,8 @@ import os
 
 class Sprite:
     PIXEL_WEIGHT = 0.01
-    PIXEL_WIDTH = 0.01
+    PIXEL_DIMEN = 0.195 / 1080
+
     def __init__(self, matrix, mass, path):
         self._matrix = matrix
         self._mass = mass
@@ -25,7 +26,6 @@ class Sprite:
         for y, row in enumerate(reversed(data)):
             matrix.append([])
             for x, pixel in enumerate(row):
-                print(sum(pixel) / len(pixel), threshold)
                 if sum(pixel) / len(pixel) > threshold:
                     mass += cls.PIXEL_WEIGHT * sum(pixel) / len(pixel)
                     matrix[y].append((0, 0, 0, 255) if not reverse else (255, 255, 255, 255))
@@ -39,7 +39,7 @@ class Sprite:
 
     @property
     def area(self) -> float:
-        return len(self._matrix[0]) * self.PIXEL_WIDTH
+        return len(self._matrix[0]) * self.PIXEL_DIMEN
 
     @property
     def mass(self):
