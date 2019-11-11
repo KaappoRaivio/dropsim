@@ -1,3 +1,4 @@
+import math
 import matplotlib.pyplot as plt
 import os
 
@@ -39,7 +40,7 @@ class Sprite:
 
     @property
     def area(self) -> float:
-        return len(self._matrix[0]) * self.PIXEL_DIMEN
+        return len(self._matrix[0]) * math.sqrt(self.PIXEL_DIMEN) * 10000
 
     @property
     def mass(self):

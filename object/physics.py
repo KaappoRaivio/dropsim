@@ -35,10 +35,10 @@ class Physics:
 
         if y <= 0:
             self.v = -self.v * self.bounciness
-            y = 0
+            # self.
             self.pos = self.pos[0], 0,
+            return self.pos
 
-        
         v = self._updateVelocity(dt)
 
         self.pos = (x, y - v*dt)
@@ -58,7 +58,7 @@ class Physics:
         F = self.getDrag()
         m = self.m
 
-        self.a = (G - F) / m
+        self.a = (G - abs(F)) / m
 
         return self.a
 
