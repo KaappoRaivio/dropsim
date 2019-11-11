@@ -15,6 +15,7 @@ class Graphics:
         self.display = pygame.display.set_mode(size)
 
         self._scene = scene
+        self.render([])
 
     def render(self, objects: List[object.Object]):
         self.display.fill((255, 255, 255, 255))
@@ -35,8 +36,9 @@ class Graphics:
         highest_point = self._scene.getHighestPoint()[1]
         position_in_meters = _object.pos
         pixel_dimen = sprite.Sprite.PIXEL_DIMEN
+        # position_in_pixels = tuple(map(lambda x: x / pixel_dimen, position_in_meters))
 
-        position_in_pixels = position_in_meters[0] / pixel_dimen, self.size[1] - self.size[1] * position_in_meters[1]/highest_point/pixel_dimen - _object.sprite.size[1]
+        position_in_pixels = position_in_meters[0] / pixel_dimen, self.size[1] - self.size[1] * position_in_meters[1] / highest_point - _object.sprite.size[1]
         print(position_in_pixels)
 
         self.display.blit(image, position_in_pixels)
