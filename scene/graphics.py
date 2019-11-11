@@ -2,6 +2,7 @@ import sys, os
 from typing import List
 
 from object import object, sprite
+from scene import scene
 
 # sys.stdout = os.devnull
 import pygame
@@ -10,30 +11,24 @@ pygame.init()
 
 
 class Graphics:
-    def __init__(self, scene, size=(640,480)):
+    def __init__(self, size=(640,480)):
         self.size = size
         self.display = pygame.display.set_mode(size)
 
         self._scene = scene
-        self.render([])
 
-    def render(self, objects: List[object.Object]):
+    def render(self, _scene: scene.Scene, objects: List[object.Object]):
         self.display.fill((255, 255, 255, 255))
 
         for o in objects:
-            self.fillObject(o)
+            self.fillObject(_scene, o)
 
         self._update()
 
-    def fillObject(self, _object: object.Object):
-        # data = _object.getSpriteData()
-        #
-        # for y in range(len(data)):
-        #     for x in range(len(data[y])):
-        #         self.display.set_at((int(_object.pos[0] + x), self.size[1] - int(_object.pos[1] + y)), data[y][x])
+    def fillObject(self, _scene: scene.Scene, _object: object.Object):
         image = pygame.image.load(_object.sprite.path)
 
-        highest_point = self._scene.getHighestPoint()[1]
+        highest_point = _scene.getHighestPoint()[1]
         position_in_meters = _object.pos
         pixel_dimen = sprite.Sprite.PIXEL_DIMEN
         # position_in_pixels = tuple(map(lambda x: x / pixel_dimen, position_in_meters))
