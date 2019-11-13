@@ -1,7 +1,8 @@
+import time
 from typing import Tuple
 
 class Physics:
-    def __init__(self, pos=(0, 100), v=0, a=0, m=1, g=10, rho=1.23, C=1, A=1, bounciness=0.5):
+    def __init__(self, pos=(0, 100), v=0, a=0, m=1, g=10, rho=1.23, C=1, A=1, bounciness=0.5, air_resistance=True):
         # pos   : position of the object
         # v     : velocity of the object
         # a     : acceleration of the object
@@ -12,6 +13,7 @@ class Physics:
         # C     : drag coefficient of the object
         # A     : face area of the object
 
+        self.air_resistance = air_resistance
         self.bounciness = bounciness
         self.pos = pos
 
@@ -29,14 +31,21 @@ class Physics:
 
         self.A = A
 
+        self.time_touched = 0
+        self._touched_before = False
+
     def updatePosition(self, dt) -> Tuple[int, int]:
         x = self.pos[0]
         y = self.pos[1]
 
         if y <= 0:
             self.v = -self.v * self.bounciness
-            # self.
             self.pos = self.pos[0], 0,
+
+            if not self._touched_before:
+                self.time_touched = time.time()
+                self._touched_before = True
+
             return self.pos
 
         v = self._updateVelocity(dt)
@@ -44,6 +53,9 @@ class Physics:
         self.pos = (x, y - v*dt)
 
         return self.pos
+
+    def isOnGround(self):
+        return self.pos[1] == 0
 
     def _updateVelocity(self, dt) -> float:
         v = self.v
@@ -55,7 +67,7 @@ class Physics:
 
     def _updateAcceleration(self) -> float:
         G = self.getGravitationalForce()
-        F = self.getDrag()
+        F = self.getDrag() * self.air_resistance
         m = self.m
 
         self.a = (G - abs(F)) / m

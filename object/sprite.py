@@ -2,6 +2,8 @@ import math
 import matplotlib.pyplot as plt
 import os
 
+import pygame
+
 
 class Sprite:
     PIXEL_WEIGHT = 0.01
@@ -11,7 +13,10 @@ class Sprite:
         self._matrix = matrix
         self._mass = mass
 
-        self.path = path
+        self._path = path
+
+        self._sufrace = pygame.image.load(self._path)
+        self._original_size = self._sufrace.get_rect().size
 
     def normalizeData(self):
         return
@@ -31,7 +36,6 @@ class Sprite:
                     mass += cls.PIXEL_WEIGHT * sum(pixel) / len(pixel)
                     matrix[y].append((0, 0, 0, 255) if not reverse else (255, 255, 255, 255))
                 else:
-                    # print("Moi")
                     matrix[y].append((255, 255, 255, 255) if not reverse else (0, 0, 0, 255))
         print(mass)
         return cls(matrix, mass, path)
@@ -48,7 +52,7 @@ class Sprite:
 
     @property
     def coefficientOfDrag(self) -> float:
-        return 1
+        return 0.4
 
     @property
     def data(self):
@@ -60,7 +64,18 @@ class Sprite:
 
     @property
     def size(self):
-        return len(self._matrix[0]), len(self._matrix)
+        # return len(self._matrix[0]), len(self._matrix)
+        return self._sufrace.get_rect().size
+
+    @property
+    def original_size(self):
+        return self._original_size
+
+    def rescale(self, size):
+        self._sufrace = pygame.transform.scale(self._sufrace, size)
+
+    def getImageSurface(self):
+        return self._sufrace
 
 
 if __name__ == '__main__':

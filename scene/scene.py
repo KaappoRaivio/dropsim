@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import time
-from typing import List
+from typing import List, Iterable
 
 import sys
 
@@ -20,9 +20,9 @@ class Scene:
         self.previous_times.append(time.time())
 
 
-    def addObjects(self, objects: List[object.Object]):
+    def addObjects(self, objects: Iterable[object.Object]):
         if objects:
-            self.addObject(objects[1])
+            self.addObject(objects[0])
             self.addObjects(objects[1:])
 
     def update(self):
@@ -42,12 +42,12 @@ class Scene:
             self.update()
             self.screen.render(self, self._objects)
             time.sleep(0.01)
-            print(self._objects[0])
+            print(*self._objects, sep="\n", end="\n" + "-"*50+"\n")
             # if self._objects[0].pos[1] <= 0:
             #     sys.exit(0)
 
     def getHighestPoint(self):
-        return max(map(lambda x: x.highest_point, self._objects))
+        return max(map(lambda x: x.highest_point[1], self._objects))
 
     def render(self):
         self.screen.render(self, self._objects)
