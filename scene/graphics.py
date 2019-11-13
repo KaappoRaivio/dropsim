@@ -44,9 +44,9 @@ class Graphics:
         text3 = self._font.render(f"a: {_object.physics.a:.2f}", False, (0, 0, 0))
 
         self.display.blit(image, position_in_pixels)
-        self.display.blit(text1, (position_in_pixels[0] + _object.sprite.size[0], min(position_in_pixels[1] - 50, self.size[1] - 100)))
-        self.display.blit(text2, (position_in_pixels[0] + _object.sprite.size[0], min(position_in_pixels[1] - 25, self.size[1] - 75)))
-        self.display.blit(text3, (position_in_pixels[0] + _object.sprite.size[0], min(position_in_pixels[1] - 0, self.size[1] - 50)))
+        self.display.blit(text1, (position_in_pixels[0] + _object.sprite.size[0], min(position_in_pixels[1] - 50, self.size[1] - 90)))
+        self.display.blit(text2, (position_in_pixels[0] + _object.sprite.size[0], min(position_in_pixels[1] - 25, self.size[1] - 65)))
+        self.display.blit(text3, (position_in_pixels[0] + _object.sprite.size[0], min(position_in_pixels[1] - 0, self.size[1] - 40)))
 
     def _update(self):
         pygame.display.flip()
