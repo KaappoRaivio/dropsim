@@ -1,0 +1,3 @@
+object.Object("assets/muffincup.png", reverse=True, pos=(0.03, 4.5))
+object.Object("assets/ball.png", reverse=True, pos=(-0.02, 5))
+object.Object("assets/ball.png", reverse=True, pos=(0.01, 4))
