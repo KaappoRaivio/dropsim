@@ -37,7 +37,7 @@ class Sprite:
                     matrix[y].append((0, 0, 0, 255) if not reverse else (255, 255, 255, 255))
                 else:
                     matrix[y].append((255, 255, 255, 255) if not reverse else (0, 0, 0, 255))
-                    
+        print(mass)
         return cls(matrix, mass, path)
 
         # print("\n".join(map("".join, matrix)))
