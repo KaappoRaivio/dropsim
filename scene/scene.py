@@ -53,7 +53,7 @@ class Scene:
 
                 elif event.type == pygame.KEYDOWN:
                     if event.key == 13: # Enter
-                        start_run = True,
+                        start_run = True
                         self._resetDeltaTime()
                     elif event.key == 27: # Escape
                         raise SystemExit
