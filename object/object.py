@@ -16,9 +16,8 @@ class Object:
         if not self._has_started:
             self._start_time = time.time()
             self._has_started = True
+
         self.physics.updatePosition(deltaTime)
-
-
 
     @property
     def pos(self) -> Tuple[int, int]:

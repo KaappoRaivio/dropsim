@@ -1,14 +1,10 @@
-import sys, os
 from typing import List
 
 from object import object, sprite
 from scene import scene
 
-# sys.stdout = os.devnull
-import time
 import pygame
 pygame.init()
-# sys.stdout = sys.__stdout__
 
 
 class Graphics:
@@ -31,6 +27,9 @@ class Graphics:
         position_in_meters = _object.pos
         pixel_dimen = sprite.Sprite.PIXEL_DIMEN
         highest_point = _scene.getHighestPoint()
+
+        text0 = self._font.render(f"{highest_point:.2f} m", False, (0, 0, 0))
+        self.display.blit(text0, (0, 0))
 
         scale_factor = (self.size[1] * highest_point) / (self.size[1] - _object.sprite.original_size[1])
 
