@@ -20,5 +20,4 @@ ball2 = object.Object("assets/ball.png", reverse=True, pos=(0.01, 50), C=1)  # T
 #     time.sleep(0.01)
 our_scene.addObjects((ball, ball2))
 our_scene.render()
-input()
 our_scene.runForEver()
