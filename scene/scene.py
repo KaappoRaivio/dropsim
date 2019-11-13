@@ -47,7 +47,6 @@ class Scene:
         while KeyboardInterrupt:
             pygame.event.pump()
             for event in pygame.event.get():
-                print(event)
                 if event.type == pygame.QUIT:
                     raise SystemExit()
 
