@@ -8,7 +8,7 @@ from object import sprite
 class Object:
     def __init__(self, path_to_sprite, reverse=False, pos=(0, 5), C=1, air_resistance=True):
         self.sprite: sprite.Sprite = sprite.Sprite.fromFile(path_to_sprite, reverse=reverse)
-        self.physics = physics.Physics(A=self.sprite.area, m=self.sprite.mass, C=C, bounciness=self.sprite.bounciness, pos=pos, air_resistance=air_resistance)
+        self.physics = physics.Physics(A=self.sprite.area, m=self.sprite.mass, C=C, bounciness=self.sprite.bounciness, pos=pos, air_resistance=air_resistance, g=9.81)
         self.highest_point = pos
         self._has_started = False
 
