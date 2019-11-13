@@ -1,0 +1,1 @@
+object.Object("assets/ball.png", reverse=True, pos=(-0.02, 5), air_resistance=False)
