@@ -28,7 +28,7 @@ class Object:
         if self.physics.isOnGround():
             return self.physics.time_touched - self._start_time
         elif not self._has_started:
-            return time.time()
+            return 0
         else:
             return time.time() - self._start_time
         
